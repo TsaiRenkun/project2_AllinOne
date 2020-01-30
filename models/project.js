@@ -3,7 +3,7 @@
  * Export model functions as a module
  * ===========================================
  */
-module.exports = (dbPoolInstance) => {
+module.exports = (Pool) => {
 
   // `dbPoolInstance` is accessible within this function scope
 
@@ -11,7 +11,7 @@ module.exports = (dbPoolInstance) => {
 
     let query = 'SELECT * FROM pokemons';
 
-    dbPoolInstance.query(query, (error, queryResult) => {
+    Pool.query(query, (error, queryResult) => {
       if( error ){
 
         // invoke callback function with results after query has executed
@@ -32,7 +32,28 @@ module.exports = (dbPoolInstance) => {
     });
   };
 
+  let newUser = (data, callback) => {
+    let query = 'INSERT INTO users (name,password) VALUES ($1,$2)';
+    let values = [data.username, data.password];
+    Pool.query(query,values,(err,res)=>{
+
+    })
+  }
+  let findUser = (data,callback)=> {
+    let query = 'SELECT * from users WHERE name = $1';
+    let values = [data.username];
+    Pool.query(query,values,(err,res)=>{
+        if(err){
+            callback(err,null)
+        } else {
+            callback(null,res)
+        }
+    })
+}
+
   return {
     getAll:getAll,
+    newUser:newUser,
+    findUser:findUser
   };
 };
