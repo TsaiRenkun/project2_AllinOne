@@ -2,7 +2,8 @@ Create table if not exists users(
  Id serial primary key,
 name text,
 password text,
-salt text
+salt text,
+UNIQUE (name)
 );
 
 Create table if not exists user_workout(

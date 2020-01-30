@@ -10,17 +10,16 @@ if(this.props.username === undefined){
     loginOrLogOutPath = "/"
     loginOrLogOutName = "LogIn"
 } else {
-    loginOrLogOutPath = "/logout"
+    loginOrLogOutPath = "/logOut"
     loginOrLogOutName = "LogOut"
-
 }
-
 
 return(
         <html>
             <Header>
             </Header>
                 <body>
+                    <div class = "container">
                         <ul class="nav nav-pills flex-column">
                               <li class="nav-item">
                                 <a class="nav-link active" href="#">Home</a>
@@ -38,7 +37,10 @@ return(
                                 <a class="nav-link " href="#">Favourites</a>
                               </li>
                             </ul>
-                                <a class="nav-link" href={loginOrLogOutPath}>{loginOrLogOutName}</a>
+                            <form Method = "POST" action = {loginOrLogOutPath}>
+                                <button type="submit" class="btn btn-primary">LogOut</button>
+                            </form>
+                        </div>
                     <div>
                         <h1 class ="display-1 text-center">Workout</h1>
                     </div>
