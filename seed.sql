@@ -5,25 +5,25 @@
 -- salt text
 -- );
 
-INSERT INTO users
-(name,password)
-VALUES
-('sammy','1234');
+-- INSERT INTO users
+-- (name,password)
+-- VALUES
+-- ('sammy','1234');
 
-INSERT INTO users
-(name,password)
-VALUES
-('kunny','1234');
+-- INSERT INTO users
+-- (name,password)
+-- VALUES
+-- ('kunny','1234');
 
-INSERT INTO users
-(name,password)
-VALUES
-('benny','1234');
+-- INSERT INTO users
+-- (name,password)
+-- VALUES
+-- ('benny','1234');
 
-INSERT INTO users
-(name,password)
-VALUES
-('robby','1234');
+-- INSERT INTO users
+-- (name,password)
+-- VALUES
+-- ('robby','1234');
 
 -- Create table if not exists user_workout(
 --  Id serial primary key,
@@ -84,7 +84,7 @@ VALUES
 -- bodypart_id integer
 -- );
 
-INSERT into exercise
-(name, instructions, bodypart_id)
-VALUES
-('DeadLift', 'Keep your lower back straight, core tight.', '4')
+-- INSERT into exercise
+-- (name, instructions, bodypart_id)
+-- VALUES
+-- ('DeadLift', 'Keep your lower back straight, core tight.', '4')

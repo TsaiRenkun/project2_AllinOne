@@ -80,11 +80,23 @@ module.exports = (Pool) => {
         }
     })
 }
+  let findBody = (callback)=>{
+    let query = 'SELECT * from bodypart'
+
+    Pool.query(query,(err,res)=>{
+        if(err){
+            callback(err,null);
+        } else {
+            callback(null,res);
+        }
+    })
+  }
 
   return {
     checkCookie:checkCookie,
     getAll:getAll,
     newUser:newUser,
-    findUser:findUser
+    findUser:findUser,
+    findBody:findBody
   };
 };

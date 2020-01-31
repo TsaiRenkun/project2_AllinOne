@@ -1,0 +1,32 @@
+.box:after
+{
+	content: ".";
+	visibility: hidden;
+}
+
+.box{
+	height:300px;
+  width:150px;
+  border:1px solid black;
+}
+
+
+.dates{
+	height:30px;
+  width:150px;
+  text-align:center;
+  display:inline-block;
+  background-color:pink;
+  color:black;
+}
+
+.calender{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.parts{
+	padding: 10px;
+	border:1px solid black;
+}

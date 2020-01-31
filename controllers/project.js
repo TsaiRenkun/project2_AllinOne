@@ -80,11 +80,17 @@ module.exports = (db) => {
         if(cookie !== user){
             res.send("WRONGOWNTOGNWEOGNWEGNEWOGOJIEWGEWIJOJIPEFWIJFEJIPFWEJIPFWEJOPIWEF");
         } else {
-            res.send("YOU ARE SCHASDHSAJDHJASDHSAJKDHSAKLDJSK");
+            let input = {};
+            db.key.findBody((err,result2)=>{
+                console.log("YOU FOUND MY BODY PART" , result2);
+                input = {
+                    bodyparts:result2.rows
+                }
+                res.render('main/schedule', input);
+            })
+
         }
-
     })
-
   };
   /**
    * ===========================================
