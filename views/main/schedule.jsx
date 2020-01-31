@@ -11,9 +11,9 @@ class schedule extends React.Component {
     console.log(this.props);
     const part = this.props.bodyparts.map(bodypart=>{
         return (
-            <span class="parts" id="draggableSpan" draggable='true' value = {bodypart.id}>
+            <div class="parts" id={bodypart.id} draggable='true' value = {bodypart.id}>
                                     {bodypart.name}
-                                  </span>
+                                  </div>
                                   )
     })
 
