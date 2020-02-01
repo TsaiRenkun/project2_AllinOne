@@ -92,6 +92,10 @@ module.exports = (db) => {
         }
     })
   };
+
+  let inputWorkout = (req,res)=>{
+
+  }
   /**
    * ===========================================
    * Export controller functions as a module

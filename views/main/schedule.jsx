@@ -28,13 +28,14 @@ class schedule extends React.Component {
                             <Nav username = {this.props.username}>
                             </Nav>
                     </div>
-                        <div class="col-9">col-8
-                            <div class= "topbox">
+                        <div class="col-9">
+                            <div class= "topbox d-flex justify-content-center">
                                 <div class = "parent calender">
                                 </div>
-                                <div class = "parent bottombox">
+                            </div>
+                            <a href = "#" class="btn btn-success btn-block mt-3" id = "submit_btn">Submit</a>
+                            <div class = "parent bottombox">
                                   {part}
-                                </div>
                             </div>
                         </div>
                     </div>
