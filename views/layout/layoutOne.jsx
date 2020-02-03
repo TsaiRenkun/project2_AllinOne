@@ -20,18 +20,18 @@ return(
             </Header>
                 <body>
                     <div class = "container">
-                        <ul class="nav nav-pills flex-column">
+                     <ul class="nav nav-pills flex-column">
                               <li class="nav-item">
-                                <a class="nav-link active" href="#">Home</a>
+                                <a class="nav-link active" href="/home">Home</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="/home">Schedule</a>
+                                <a class="nav-link" href="/schedule">Schedule</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="">WorkOut</a>
+                                <a class="nav-link" href="/workoutlist">WorkOut</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link " href="#">Exercise</a>
+                                <a class="nav-link " href="/exercise">Exercise</a>
                               </li>
                               <li class="nav-item">
                                 <a class="nav-link " href="#">Favourites</a>

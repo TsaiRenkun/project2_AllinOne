@@ -60,9 +60,6 @@ function putdrag(){
     }
 }
 
-
-
-
 myFunction();
 putdrag();
 var calArray = document.querySelectorAll('.box');
@@ -88,7 +85,6 @@ calArray.forEach((x,i)=>{
             }
        })
 console.log("DADADADADTATATATATATATAT ", data);
-
 
   var request = new XMLHttpRequest();
   request.addEventListener("load", function() {

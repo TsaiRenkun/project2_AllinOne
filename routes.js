@@ -24,7 +24,15 @@ module.exports = (app, allModels) => {
 
   app.get('/schedule', controllerCallbacks.showSchedulePage);
 
-  app.post('/workout', controllerCallbacks.)
+
+  app.get('/workoutlist', controllerCallbacks.showWorkoutPage)
+  app.get('/workoutlist/:id', controllerCallbacks.showSelectedWorkout)
+  app.post('/workout', controllerCallbacks.inputWorkout)
+
+
+
+  app.get('/exercise', controllerCallbacks.showExercisePage)
+  app.get('/exercise/:id', controllerCallbacks.showInstructions)
 
   //app.get('/pokemons/:id', pokemons.getPokemon);
 };
