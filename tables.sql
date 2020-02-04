@@ -3,6 +3,7 @@ Create table if not exists users(
 name text,
 password text,
 salt text,
+level text,
 UNIQUE (name)
 );
 

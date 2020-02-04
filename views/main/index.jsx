@@ -1,6 +1,6 @@
 var React = require("react");
 var Layout = require("../layout/layoutTwo");
-var Header = require("../loginPage/Header");
+var Header = require("../loginPage/header");
 
 class Home extends React.Component {
   render() {

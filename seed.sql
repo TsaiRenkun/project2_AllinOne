@@ -77,12 +77,12 @@
 -- UNIQUE (workout_id, exercise_id)
 -- );
 
-Create table if not exists exercise(
- Id serial primary key,
-name text,
-instructions text,
-bodypart_id integer
-);
+-- Create table if not exists exercise(
+--  Id serial primary key,
+-- name text,
+-- instructions text,
+-- bodypart_id integer
+-- );
 
 
 INSERT INTO exercise
