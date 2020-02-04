@@ -1,6 +1,5 @@
 var React = require("react");
-var Nav = require("../layout/layoutTwo");
-var Header = require('../loginPage/header');
+var Layout = require("../layout/layoutTwo");
 
 
 
@@ -18,17 +17,8 @@ class schedule extends React.Component {
     })
 
     return (
-        <html>
-            <Header>
-                <link rel="stylesheet" href="schdesgin.css"/>
-            </Header>
-                <body>
-                    <div class="row">
-                        <div class="col-3">
-                            <Nav username = {this.props.username}>
-                            </Nav>
-                    </div>
-                        <div class="col-9">
+        <Layout username = {this.props.username}>
+                        <div>
                             <div class= "topbox d-flex justify-content-center">
                                 <div class = "parent calender">
                                 </div>
@@ -38,10 +28,8 @@ class schedule extends React.Component {
                                   {part}
                             </div>
                         </div>
-                    </div>
                     <script src="/script.js"></script>
-                 </body>
-        </html>
+                    </Layout>
 
     );
   }

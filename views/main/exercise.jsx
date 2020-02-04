@@ -46,24 +46,23 @@ class exercise extends React.Component {
     return (
         <html>
             <Header>
+            <script src="https://kit.fontawesome.com/a2b57747b4.js" crossorigin="anonymous"></script>
             </Header>
                 <body>
-                    <div class="row">
-                        <div class="col-3">
+                        <div>
                             <Nav username = {this.props.username}>
                             </Nav>
-                    </div>
-                        <div class="col-9">
+                        </div>
+                        <div>
                             <div class= "topbox d-flex justify-content-center">
                                 <div class = "parent calender">
-                                <h1 class="display-2">Exercises</h1>
+                                    <h1 class="display-2">Exercises</h1>
                                 </div>
                             </div>
                             <div class="accordion" id="accordionExample">
-                            {cards}
+                                {cards}
                             </div>
                         </div>
-                    </div>
                  </body>
         </html>
 

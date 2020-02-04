@@ -20,7 +20,7 @@ UNIQUE (name)
 
 Create table if not exists workout(
  Id serial primary key,
-name text,
+name date,
 bodypart text,
 bodypart_id integer,
 user_id integer,
@@ -40,4 +40,11 @@ Create table if not exists exercise(
 name text,
 instructions text,
 bodypart_id integer
+);
+
+Create table if not exists favourite(
+ Id serial primary key,
+user_id integer,
+exercise_id integer,
+UNIQUE (exercise_id, user_id)
 );

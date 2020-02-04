@@ -31,8 +31,8 @@ module.exports = (Pool) => {
         if (err) throw err;
             salt = buf.toString('hex');
             newPassword = sha256(data.password + salt);
-            let query = 'INSERT INTO users (name,password,salt) VALUES ($1,$2,$3) RETURNING id, name';
-            let values = [data.username, newPassword , salt];
+            let query = 'INSERT INTO users (name,password,salt,level) VALUES ($1,$2,$3,$4) RETURNING *';
+            let values = [data.username, newPassword , salt, data.level];
             Pool.query(query,values,(err,res,cookie)=>{
         if(err){
                 callback(err,null)
@@ -84,7 +84,7 @@ module.exports = (Pool) => {
   }
 
   let showWorkouts = (data,callback)=>{
-    let query = 'SELECT * from workout WHERE user_id = $1'
+    let query = 'SELECT * from workout WHERE user_id = $1 ORDER BY name ASC'
     let values = [data.id]
 
     Pool.query(query,values,(err,res)=>{
@@ -125,7 +125,7 @@ module.exports = (Pool) => {
              if(err){
             callback(err,null)
         } else {
-            callback(null,res)
+            callback("null",res)
         }
   })
 }
@@ -143,9 +143,10 @@ module.exports = (Pool) => {
   })
 }
 
- let selectedWorkout = (callback)=>{
-    let query = 'Select exercise_workout.workout_id , exercise.name, exercise.id from exercise inner join exercise_workout on(exercise_workout.exercise_id = exercise.id);'
-     Pool.query(query,(err,res)=>{
+ let selectedWorkout = (data, callback)=>{
+    let query = 'Select exercise_workout.workout_id, exercise_workout.user_id , exercise.name, exercise.id, workout.name AS date, workout.bodypart from exercise inner join exercise_workout on(exercise_workout.exercise_id = exercise.id) inner join workout on(exercise_workout.workout_id = workout.id) WHERE exercise_workout.user_id = $1 AND workout_id = $2 '
+    let values = [data.id , data.workoutid];
+     Pool.query(query,values,(err,res)=>{
              if(err){
             callback(err,null)
         } else {
@@ -154,6 +155,48 @@ module.exports = (Pool) => {
   })
  }
 
+ let checkFav = (data, callback) => {
+    let query = 'SELECT * FROM favorite WHERE user_id = $1 AND exercise_id = $2 RETURNING *'
+    let values = [data.id, data.exerciseid]
+    Pool.query(query, values, (err,res)=>{
+          if(err){
+            callback(err,null)
+        } else {
+            callback(null,res)
+        }
+    })
+ }
+
+ let addFav = (data,callback)=>{
+    console.log(data.id, data.exerciseid)
+    let query = 'INSERT INTO favorite (user_id, exercise_id) VALUES ($1, $2) RETURNING *';
+    let values = [data.id, data.exerciseid]
+    Pool.query(query,values, (err,res1)=>{
+        if(err){
+            let delQuery = 'DELETE FROM favorite WHERE user_id = $1 AND exercise_id = $2';
+            Pool.query(delQuery,values,(err,res2)=>{
+            if (err) callback("ERROR DELETEING", null);
+                else {
+            callback("delete", res2);
+                }
+            })
+        } else {
+            callback("insert", res1)
+        }
+    })
+ }
+
+ let showFav = (data,callback) =>{
+    let query = 'SELECT favorite.id, favorite.exercise_id, exercise.id, exercise.name FROM favorite INNER JOIN exercise ON(favorite.exercise_id = exercise.id) WHERE favorite.user_id = $1';
+    let values = [data.id];
+    Pool.query(query,values,(err,res)=>{
+        if(err){
+            callback(err,null)
+        } else {
+            callback(null,res)
+        }
+    })
+ }
 
 
   return {
@@ -161,12 +204,18 @@ module.exports = (Pool) => {
     newUser:newUser,
     findUser:findUser,
     findBody:findBody,
+
     inputWorkouts:inputWorkouts,
     showWorkouts:showWorkouts,
+    selectedWorkout:selectedWorkout,
+
     showAllExercises:showAllExercises,
     findExercise:findExercise,
     pullExercise:pullExercise,
     inputExercise:inputExercise,
-    selectedWorkout:selectedWorkout
+
+    checkFav:checkFav,
+    addFav:addFav,
+    showFav:showFav
   };
 };

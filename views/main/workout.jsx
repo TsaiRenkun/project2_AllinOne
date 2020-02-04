@@ -1,9 +1,5 @@
 var React = require("react");
-var Nav = require("../layout/layoutTwo");
-var Header = require('../loginPage/header');
-
-
-
+var Layout = require("../layout/layoutTwo");
 
 class schedule extends React.Component {
   render() {
@@ -11,15 +7,17 @@ class schedule extends React.Component {
     console.log(this.props);
 
     const cards = this.props.workouts.map(workout=>{
+        let link = "/workoutlist/" + workout.id
+        let dates = workout.name.toString().split(" ").slice(0, 4).join(" ");
         return(
         <div class="card text-center">
           <div class="card-header">
-            {workout.name}
+            {dates}
           </div>
           <div class="card-body">
             <h5 class="card-title">{workout.bodypart}</h5>
             <p class="card-text">RANDOM QUOTE</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a href={link} class="btn btn-primary">Plan <i class="fas fa-align-justify"></i></a>
           </div>
           <div class="card-footer text-muted">
           </div>
@@ -28,17 +26,8 @@ class schedule extends React.Component {
 })
 
     return (
-        <html>
-            <Header>
-                <link rel="stylesheet" href="schdesgin.css"/>
-            </Header>
-                <body>
-                    <div class="row">
-                        <div class="col-3">
-                            <Nav username = {this.props.username}>
-                            </Nav>
-                    </div>
-                        <div class="col-9">
+       <Layout username = {this.props.username}>
+                        <div>
                             <div class= "topbox d-flex justify-content-center">
                                 <div class = "parent calender">
                                 <h1 class="display-2">Workouts</h1>
@@ -46,9 +35,7 @@ class schedule extends React.Component {
                             </div>
                             {cards}
                         </div>
-                    </div>
-                 </body>
-        </html>
+    </Layout>
 
     );
   }

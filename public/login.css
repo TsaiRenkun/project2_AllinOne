@@ -1,0 +1,13 @@
+body{
+	background-color: #cfdffa;
+}
+
+.login {
+	text-align: center;
+}
+
+.logo {
+	text-align: center;
+	background-color:#007bff;
+	color: white;
+}

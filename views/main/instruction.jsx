@@ -1,37 +1,26 @@
 var React = require("react");
-var Nav = require("../layout/layoutTwo");
+var Layout = require("../layout/layoutTwo");
 var Header = require('../loginPage/header');
-
-
-
 
 class instruction extends React.Component {
   render() {
     let exercisekey = this.props.exercise[0]
     return (
-        <html>
-            <Header>
-            </Header>
-                <body>
-                    <div class="row">
-                        <div class="col-3">
-                            <Nav username = {this.props.username}>
-                            </Nav>
-                    </div>
-                        <div class="col-9">
+    <Layout username = {this.props.username}>
+                        <div>
                             <div class= "topbox d-flex justify-content-center">
                                 <div class = "parent calender">
-                                <h1 class="display-2">{exercisekey.name}</h1>
+                                <h1 class="display-2">{exercisekey.name} </h1> <i class="far fa-thumbs-up like_btn"></i>
                                 </div>
                             </div>
                             <div>
                                 <p>{exercisekey.instructions}</p>
                             </div>
                         </div>
-                    </div>
-                 </body>
-        </html>
 
+                    <script src = "/checkFav.js"></script>
+                    <script src="/like.js"></script>
+        </Layout>
     );
   }
 }

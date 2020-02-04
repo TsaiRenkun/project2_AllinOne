@@ -6,9 +6,12 @@ class login extends React.Component {
 return(
         <html>
             <Header>
-                <link rel="stylesheet" href="design.css"/>
+                <link rel="stylesheet" href="login.css"/>
             </Header>
                 <body>
+            <h1 class="display-2 logo">AllinOne<i class="fas fa-walking"></i></h1>
+                <div class = "container login">
+                    <div class = "d-flex justify-content-center">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                       <li class="nav-item">
                         <a class="nav-link active" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
@@ -17,9 +20,9 @@ return(
                         <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
                       </li>
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
+                    </div>
+                    <div class="tab-content d-flex justify-content-center" id="pills-tabContent">
                       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-                      Login here
                       <form method = "POST" action = "/login">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Username</label>
@@ -45,10 +48,19 @@ return(
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" name="password" placeholder="Password"/>
                               </div>
+                              <div class="form-group">
+                                <label for="exampleInputPassword1">Level</label>
+                                <select class="form-control levelbar" id="exampleFormControlSelect1" name = "level">
+                                  <option value ='beginner'>Beginner</option>
+                                  <option value ='intermediate'>Intermediate</option>
+                                  <option value ='advance'>Advance</option>
+                                </select>
+                              </div>
                               <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
+                                </div>
+                            </div>
                         </div>
-                      </div>
                 </body>
         </html>
         );

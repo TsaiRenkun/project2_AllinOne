@@ -1,36 +1,33 @@
 var React = require("react");
-var Nav = require("../layout/layoutTwo");
-var Header = require('../loginPage/header');
-
-
-
+var Layout = require("../layout/layoutTwo");
 
 class singleworkout extends React.Component {
   render() {
-    console.log(this.props)
+    console.log(this.props.workout)
+    let single = this.props.workout[0]
+    let dates = single.date.toString().split(" ").slice(0, 4).join(" ");
+
+    let list = this.props.workout.map(move => {
+        let link = "/exercise/" + move.id;
+        return (
+            <div class="card-body">
+                <a href={link} class="badge badge-light">{move.name} 15 x 3 SETS</a>
+            </div>
+            )
+        })
     return (
-        <html>
-            <Header>
-            </Header>
-                <body>
-                    <div class="row">
-                        <div class="col-3">
-                            <Nav username = {this.props.username}>
-                            </Nav>
-                    </div>
-                        <div class="col-9">
+       <Layout username = {this.props.username}>
+                        <div>
                             <div class= "topbox d-flex justify-content-center">
                                 <div class = "parent calender">
-                                <h1 class="display-2">{exercisekey.name}</h1>
+                                <h1 class="display-2">{dates}</h1>
                                 </div>
                             </div>
                             <div>
-                                <p>{exercisekey.instructions}</p>
+                                {list}
                             </div>
                         </div>
-                    </div>
-                 </body>
-        </html>
+</Layout>
 
     );
   }

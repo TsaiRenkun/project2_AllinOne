@@ -1,3 +1,17 @@
-body {
-	height:100%;
+h1{
+	text-align: center;
+}
+
+body{
+	background-color: #cfdffa;
+}
+
+img{
+	max-width: 300px;
+	max-height:300px;
+}
+
+.levelbar{
+
+	width:400px;
 }
