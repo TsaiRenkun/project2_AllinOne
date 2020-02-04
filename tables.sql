@@ -4,6 +4,7 @@ name text,
 password text,
 salt text,
 level text,
+image text,
 UNIQUE (name)
 );
 

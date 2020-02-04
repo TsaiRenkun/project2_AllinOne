@@ -31,8 +31,8 @@ module.exports = (Pool) => {
         if (err) throw err;
             salt = buf.toString('hex');
             newPassword = sha256(data.password + salt);
-            let query = 'INSERT INTO users (name,password,salt,level,imagelink) VALUES ($1,$2,$3,$4,$5) RETURNING *';
-            let values = [data.username, newPassword , salt, data.level,data.image];
+            let query = 'INSERT INTO users (name,password,salt,level,image) VALUES ($1,$2,$3,$4,$5) RETURNING *';
+            let values = [data.username, newPassword , salt, data.level, data.image];
             Pool.query(query,values,(err,res,cookie)=>{
         if(err){
                 callback(err,null)
