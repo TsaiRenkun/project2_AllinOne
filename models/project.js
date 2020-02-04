@@ -169,7 +169,7 @@ module.exports = (Pool) => {
 
  let addFav = (data,callback)=>{
     console.log(data.id, data.exerciseid)
-    let query = 'INSERT INTO favorite (user_id, exercise_id) VALUES ($1, $2) RETURNING *';
+    let query = 'INSERT INTO favorite (user_id, exercise_id) VALUES ($1, $2)';
     let values = [data.id, data.exerciseid]
     Pool.query(query,values, (err,res1)=>{
         if(err){

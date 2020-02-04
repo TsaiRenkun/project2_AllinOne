@@ -43,7 +43,7 @@ instructions text,
 bodypart_id integer
 );
 
-Create table if not exists favourite(
+Create table if not exists favorite(
  Id serial primary key,
 user_id integer,
 exercise_id integer,
