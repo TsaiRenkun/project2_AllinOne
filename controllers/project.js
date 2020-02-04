@@ -291,12 +291,20 @@ let showFavoritePage = (req,res)=>{
           res.send("WRONGOWNTOGNWEOGNWEGNEWOGOJIEWGEWIJOJIPEFWIJFEJIPFWEJIPFWEJOPIWEF");
         } else {
             db.key.showFav(data,(err,result1)=>{
+                if(err){
+                    console.log(err)
+
+                } else {
+
+                console.log(result1.rows)
                 data = {
                     username:user,
                     id:id,
                     favData:result1.rows
+                    }
+
+                    res.render("main/favorite",data)
                 }
-                res.render("main/favorite",data)
             })
         }
     })

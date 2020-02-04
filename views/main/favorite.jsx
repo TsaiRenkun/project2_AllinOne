@@ -6,7 +6,7 @@ class fav extends React.Component {
   render() {
 
     console.log(this.props)
-    const cards = this.props.favData.map(fav => {
+    const cards = this.props.favData || this.props.favData.map(fav => {
         let link = "/exercise/" + fav.exercise_id;
        return( <div class="card" style={{width: "18rem;"}}>
               <div class="card-body">
