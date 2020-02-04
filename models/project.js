@@ -31,8 +31,8 @@ module.exports = (Pool) => {
         if (err) throw err;
             salt = buf.toString('hex');
             newPassword = sha256(data.password + salt);
-            let query = 'INSERT INTO users (name,password,salt,level) VALUES ($1,$2,$3,$4) RETURNING *';
-            let values = [data.username, newPassword , salt, data.level];
+            let query = 'INSERT INTO users (name,password,salt,level,imagelink) VALUES ($1,$2,$3,$4,$5) RETURNING *';
+            let values = [data.username, newPassword , salt, data.level,data.image];
             Pool.query(query,values,(err,res,cookie)=>{
         if(err){
                 callback(err,null)
@@ -56,6 +56,30 @@ module.exports = (Pool) => {
         }
     })
 }
+
+  let userData = (data, callback)=>{
+    let query = 'SELECT * from users where id = $1';
+    let values = [data.id]
+    Pool.query(query,values,(err,res)=>{
+        if(err){
+            callback(err,null)
+        } else {
+            callback(null,res)
+        }
+    })
+  }
+
+  let editLvl = (data , callback) =>{
+    let query = "UPDATE users SET level = $1 WHERE id = $2";
+    let values = [data.level, data.id]
+        Pool.query(query,values,(err,res)=>{
+        if(err){
+            callback(err,null)
+        } else {
+            callback(null,res)
+        }
+    })
+  }
 
   let findBody = (callback)=>{
     let query = 'SELECT * from bodypart'
@@ -198,10 +222,25 @@ module.exports = (Pool) => {
     })
  }
 
+ let deleteFav = (data,callback)=>{
+    let query = 'DELETE FROM favorite WHERE user_id = $1 AND exercise_id = $2';
+    let values = [data.id, data.exerciseid];
+    Pool.query(query,values, (err,res1)=>{
+        if(err){
+            res.send("Deleting error")
+        } else {
+            callback("deleted", res1)
+        }
+ })
+}
+
+
 
   return {
     checkCookie:checkCookie,
     newUser:newUser,
+    userData:userData,
+    editLvl:editLvl,
     findUser:findUser,
     findBody:findBody,
 
@@ -216,6 +255,7 @@ module.exports = (Pool) => {
 
     checkFav:checkFav,
     addFav:addFav,
-    showFav:showFav
+    showFav:showFav,
+    deleteFav:deleteFav
   };
 };

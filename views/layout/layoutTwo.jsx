@@ -97,7 +97,7 @@ return(
         </head>
         <body>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a id="navbar-brand" className="navbar-brand" href="/">
+            <a id="navbar-brand" className="navbar-brand" href="/home">
               AllinOne <i class="fas fa-walking"></i>
             </a>
             <button

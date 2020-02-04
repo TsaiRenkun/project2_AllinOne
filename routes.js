@@ -21,6 +21,7 @@ module.exports = (app, allModels) => {
   app.get('/logout', controllerCallbacks.logOut);
 
   app.get('/home',controllerCallbacks.showHomePage);
+  app.post('/edit', controllerCallbacks.editLevel);
 
   app.get('/schedule', controllerCallbacks.showSchedulePage);
 
@@ -37,5 +38,6 @@ module.exports = (app, allModels) => {
   app.get('/like',controllerCallbacks.likeExercise);
 
   app.get('/favorites', controllerCallbacks.showFavoritePage);
+  app.get('/favorites/delete', controllerCallbacks.deleteFavorite)
 
 };

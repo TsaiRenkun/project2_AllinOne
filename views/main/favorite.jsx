@@ -6,14 +6,16 @@ class fav extends React.Component {
   render() {
 
     console.log(this.props)
-    const cards = /*this.props.favData || */this.props.favData.map(fav => {
+    const cards = this.props.favData.map(fav => {
         let link = "/exercise/" + fav.exercise_id;
+
        return( <div class="card" style={{width: "18rem;"}}>
               <div class="card-body">
                 <h5 class="card-title">{fav.name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                 <a class="card-link"><i class="far fa-thumbs-up like_btn"></i></a>
                 <a href={link} class="card-link">Instructions</a>
+                <a href="/favorites/delete" class="card-link">Delete</a>
               </div>
             </div>
         )
@@ -25,6 +27,8 @@ class fav extends React.Component {
             <div class = "container-fluid">
             {cards}
             </div>
+            <script src = "/checkFav.js"></script>
+            <script src="/like.js"></script>
     </Layout>
     );
   }

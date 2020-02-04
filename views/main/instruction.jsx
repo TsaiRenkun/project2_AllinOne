@@ -10,7 +10,7 @@ class instruction extends React.Component {
                         <div>
                             <div class= "topbox d-flex justify-content-center">
                                 <div class = "parent calender">
-                                <h1 class="display-2">{exercisekey.name} </h1> <i class="far fa-thumbs-up like_btn"></i>
+                                <h1 class="display-2">{exercisekey.name} </h1> <i class="far fa-thumbs-up fa-3x like_btn"></i>
                                 </div>
                             </div>
                             <div>

@@ -16,7 +16,8 @@ module.exports = (db) => {
     let data = {
         username: req.body.username,
         password: req.body.password,
-        level: req.body.level
+        level: req.body.level,
+        image:req.body.image
     }
     db.key.newUser(data,(error,result,cookie)=>{
         console.log("ahsjdgsasdjkadhasjkdhsakdhaskdhsajhdja" ,result);
@@ -36,15 +37,17 @@ module.exports = (db) => {
     db.key.findUser(data,(err,result,cookie)=>{
         if(result.rows.length === 0){
             console.log(err);
-            res.status(400).send("Invalid Username");
+            res.redirect('/');
         } else {
             console.log(result.rows);
             let hashedPw = sha256(req.body.password + result.rows[0].salt)
             if(result.rows[0].password === hashedPw){
 
                 let user_id = result.rows[0].id
+                let levels = result.rows[0].level
                 res.cookie('loggedIn', cookie);
                 res.cookie('userId', user_id);
+                res.cookie('level', levels );
                 //redirect to home page!
                 res.redirect('/home');
             }
@@ -60,11 +63,57 @@ module.exports = (db) => {
 
   let showHomePage = (req,res)=>{
     let user = req.cookies.loggedIn
+    let id = req.cookies.userId
+    let level = req.cookies.level
+    console.log(level)
+
     let data = {
-        username:user
+        username:user,
+        id:id
     }
-    res.render('main/index',data)
+    db.key.checkCookie(data, (err,result,cookie)=>{
+        if(cookie !== user){
+            res.send("WRONGOWNTOGNWEOGNWEGNEWOGOJIEWGEWIJOJIPEFWIJFEJIPFWEJIPFWEJOPIWEF");
+        } else {
+            db.key.userData(data,(err, result1)=>{
+                data = {
+                    username:user,
+                    id:id,
+                    imagelink:result1.rows[0].imagelink,
+                    level:level,
+                    name:result1.rows[0].name
+                }
+                res.render('main/index',data)
+            })
+        }
+    })
   };
+
+  let editLevel = (req,res)=>{
+    let user = req.cookies.loggedIn
+    let id = req.cookies.userId
+    let level = req.body.level
+    res.cookie('level', level );
+
+    let data = {
+        username:user,
+        id:id
+    }
+    db.key.checkCookie(data, (err,result,cookie)=>{
+        if(cookie !== user){
+            res.send("WRONGOWNTOGNWEOGNWEGNEWOGOJIEWGEWIJOJIPEFWIJFEJIPFWEJIPFWEJOPIWEF");
+        } else {
+             data = {
+                        username:user,
+                        id:id,
+                        level:level
+                    }
+            db.key.editLvl(data, (err,result1)=>{
+                res.redirect('/home')
+            })
+        }
+    })
+}
 
   let showSchedulePage = (req,res)=>{
     let user = req.cookies.loggedIn
@@ -140,11 +189,10 @@ module.exports = (db) => {
                                     console.log(chosenArray)
                                     data = {
                                         workoutid:dataEx.workout_id,
-                                        exerciseid:chosenArray[Math.floor(Math.random() * Math.floor(chosenArray.length + 1))],
+                                        exerciseid:chosenArray[Math.floor(Math.random() * Math.floor(chosenArray.length + 2))],
                                         userid:dataEx.user_id
                                         }
                                     db.key.inputExercise(data, (err,result3)=>{
-                                    //inputExercise closing
                                     })
                                 }
                             }
@@ -250,15 +298,18 @@ let showInstructions =(req,res)=>{
 }
 
 let showSelectedWorkout = (req,res)=>{
-     let user = req.cookies.loggedIn;
+    let user = req.cookies.loggedIn;
     let id = req.cookies.userId;
+    let level = req.cookies.level;
     let workoutid = req.params.id;
+
 
     console.log("ahskjdjahdkjhaskjdhsakjdhaskhdskahdkjdhadsda" ,req.body)
     let data = {
         username:user,
         id:id,
         workoutid:workoutid
+
     }
     db.key.checkCookie(data, (err,result,cookie)=>{
         if(cookie !== user){
@@ -269,7 +320,8 @@ let showSelectedWorkout = (req,res)=>{
                 data = {
                     username:user,
                     id:id,
-                    workout:result1.rows
+                    workout:result1.rows,
+                    level:level
                     }
                 res.render('main/singleworkout', data)
                 })
@@ -355,6 +407,29 @@ let checkLike = (req,res)=>{
         }
     })
 }
+
+let deleteFavorite = (req,res) => {
+    let user = req.cookies.loggedIn;
+    let id = req.cookies.userId;
+    let exerciseid = req.cookies.exerciseID;
+
+    let data = {
+        username:user,
+        id:id,
+        exerciseid:exerciseid
+    }
+
+    db.key.checkCookie(data, (err,result,cookie)=>{
+        if(cookie !== user){
+            res.send("WRONGOWNTOGNWEOGNWEGNEWOGOJIEWGEWIJOJIPEFWIJFEJIPFWEJIPFWEJOPIWEF");
+        } else {
+             db.key.deleteFav(data, (err, result1)=>{
+                console.log(err)
+                res.redirect("/favorites")
+            })
+        }
+    })
+}
   /**
    * ===========================================
    * Export controller functions as a module
@@ -367,6 +442,7 @@ let checkLike = (req,res)=>{
     logOut:logOut,
 
     showHomePage:showHomePage,
+    editLevel:editLevel,
 
     showSchedulePage:showSchedulePage,
     inputWorkout:inputWorkout,
@@ -377,11 +453,10 @@ let checkLike = (req,res)=>{
     showExercisePage:showExercisePage,
     showInstructions:showInstructions,
 
-
-
     likeExercise:likeExercise,
     checkLike:checkLike,
 
-    showFavoritePage:showFavoritePage
+    showFavoritePage:showFavoritePage,
+    deleteFavorite:deleteFavorite
   };
 };

@@ -3,9 +3,9 @@ const likeICON = document.querySelector(".like_btn");likeICON
 
 const likeCheckHandler = function() {likeCheckHandler
   if (this.responseText === "") {
-    likeICON.style.color = "blue";
-  } else {
     likeICON.style.color = "black";
+  } else {
+    likeICON.style.color = "#2979ff";
   }
 };
 

@@ -48,6 +48,10 @@ return(
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" name="password" placeholder="Password"/>
                               </div>
+                               <div class="form-group">
+                                <label for="exampleInputPassword1">Image</label>
+                                <input type="text" class="form-control" name="image" placeholder="Image URL"/>
+                              </div>
                               <div class="form-group">
                                 <label for="exampleInputPassword1">Level</label>
                                 <select class="form-control levelbar" id="exampleFormControlSelect1" name = "level">

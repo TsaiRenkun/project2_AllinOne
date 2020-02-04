@@ -5,9 +5,9 @@ const likeButton = document.querySelector(".like_btn");
 const likeHandler = function() {
   const command = JSON.parse(this.responseText).command;
   if (command === "INSERT") {
-    likeButton.style.color = "black";
+    likeButton.style.color = "#2979ff";
   } else {
-    likeButton.style.color = "blue";
+    likeButton.style.color = "black";
   }
 };
 
