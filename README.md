@@ -17,6 +17,7 @@ A link in your readme.md to the publically-accessible user stories you created
 	React
 	AJAX
 	Bootstrap
+	Postgres
 
 ## Approach
 		Plan,Trial,Incorporate
@@ -35,3 +36,11 @@ A link in your readme.md to the publically-accessible user stories you created
 		2. To be able to set a data requirement in the models that deal with dates.
 
 ## Wireframe
+(https://github.com/TsaiRenkun/project2_AllinOne/blob/master/image/Screenshot%202020-02-05%20at%2011.45.05%20AM.png)
+
+
+## ERD
+(https://github.com/TsaiRenkun/project2_AllinOne/blob/master/image/Screenshot%202020-02-05%20at%2011.45.39%20AM.png)
+
+## Problem Statement
+	The problem was that planning a workout every week is abit tiring. So i wanted to develop an app to create workouts for people.
