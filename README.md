@@ -1,12 +1,5 @@
 # ALL IN ONE
-
-A working full-stack application, built by you, hosted somewhere on the internet (most likely Heroku)
-A link to your hosted working app in the URL section of your GitHub repo
-A git repository hosted on GitHub, with a link to your hosted project, and frequent commits dating back to the very beginning of the project. Commit early, commit often
-A readme.md file with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc
-Wireframes of your app, hosted somewhere & linked in your readme
-an ERD diagram of your DB (this can be a photo of a piece of paper)
-A link in your readme.md to the publically-accessible user stories you created
+	Is an application that will help create workouts for you. Taking away the need of planning the different types of exercises you would need to do to complete the workout.
 
 ## Technologies 
 	Javascript
